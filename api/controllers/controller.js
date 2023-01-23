@@ -1,5 +1,17 @@
 
 const findBest = (req, res) => {
+    const {inputWeather} = req.body
+    const {inputOrbit1Speed} = req.body
+    const {inputOrbit2Speed} = req.body
+    if(inputOrbit1Speed<=0 || inputOrbit1Speed==NaN){
+        res.status(409).json('Please enter a valid number for inputOrbit1Speed');
+
+    }
+    if(inputOrbit2Speed<=0 || inputOrbit2Speed==NaN){
+        res.status(409).json('Please enter a valid number for inputOrbit2Speed');
+    }
+
+
     //orbit distance
     orbit1Distance = 18
     orbit2Distance = 20
@@ -22,11 +34,6 @@ const findBest = (req, res) => {
     sunnyWeather = 0.9;
     rainyWeahter = 0.8;
     windyWeather = 1;
-
-    const {inputWeather} = req.body
-    const {inputOrbit1Speed} = req.body
-    const {inputOrbit2Speed} = req.body
-
 
     bikeSpeedOrbit1 = inputOrbit1Speed
     tuktukSpeedOrbit1 =inputOrbit1Speed
@@ -154,11 +161,6 @@ const findBest = (req, res) => {
     res.status(200).json("Vehicle "+bestTransport+" on Orbit "+ bestOrbit );
 
 };
-
-
-
-
-
 
 module.exports = {
     findBest,

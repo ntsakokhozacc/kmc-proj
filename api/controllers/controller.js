@@ -32,6 +32,10 @@ const test = (req, res) => {
     tuktukSpeedOrbit1 =inputOrbit1Speed
     carSpeedOrbit1 = inputOrbit1Speed
 
+    bikeSpeedOrbit2 = inputOrbit2Speed
+    tuktukSpeedOrbit2 =inputOrbit2Speed
+    carSpeedOrbit2 = inputOrbit2Speed
+
     bikeDisqualifyOrbit1 = 1;
     tuktukDisqualifyOrbit1 = 1
     carDisqualifyOrbit1 = 1
@@ -43,8 +47,23 @@ const test = (req, res) => {
     if(tuktukSpeedOrbit1 > tuktukTopSpeed ){
         tuktukDisqualifyOrbit1=0;
     }
-    if(carSpeedOrbit1 >tuktukTopSpeed){
+    if(carSpeedOrbit1 >carTopSpeed){
         carDisqualifyOrbit1=0;
+    }
+
+    bikeDisqualifyOrbit2 = 1;
+    tuktukDisqualifyOrbit2 = 1
+    carDisqualifyOrbit2 = 1
+
+     //orbit2
+     if(bikeSpeedOrbit2 > bikeTopSpeed){
+        bikeDisqualifyOrbit2=0;
+    }
+    if(tuktukSpeedOrbit2 > tuktukTopSpeed ){
+        tuktukDisqualifyOrbit2=0;
+    }
+    if(carSpeedOrbit2 >carTopSpeed){
+        carDisqualifyOrbit2=0;
     }
 
     if(inputWeather == "sunny"){
@@ -70,11 +89,21 @@ const test = (req, res) => {
     //time calculations 
     calculationsOrbit1 ={
         bike : (orbit1Distance/(bikeSpeedOrbit1/60)+(orbit1CraterCalc*bikeTime))*bikeDisqualifyOrbit1,
-        tuktuk : (orbit1Distance/(tuktukSpeedOrbit1/60))+(orbit1CraterCalc*tuktukTime)*tuktukDisqualifyOrbit1,
-        car : orbit1Distance/(carSpeedOrbit1/60)+(orbit1CraterCalc*carTime)*carDisqualifyOrbit1,
+        tuktuk : ((orbit1Distance/(tuktukSpeedOrbit1/60))+(orbit1CraterCalc*tuktukTime))*tuktukDisqualifyOrbit1,
+        car : (orbit1Distance/(carSpeedOrbit1/60)+(orbit1CraterCalc*carTime))*carDisqualifyOrbit1,
     }
 
-    res.status(200).json((tuktukDisqualifyOrbit1)+"bike = "+ calculationsOrbit1.bike + "   "+"tuktuk = "+calculationsOrbit1.tuktuk+"   "+"car = "+calculationsOrbit1.car)
+    calculationsOrbit2 ={
+        bike : (orbit2Distance/(bikeSpeedOrbit2/60)+(orbit2CraterCalc*bikeTime))*bikeDisqualifyOrbit2,
+        tuktuk : ((orbit2Distance/(tuktukSpeedOrbit2/60))+(orbit2CraterCalc*tuktukTime))*tuktukDisqualifyOrbit2,
+        car : (orbit2Distance/(carSpeedOrbit2/60)+(orbit2CraterCalc*carTime))*carDisqualifyOrbit2,
+    }
+
+
+
+
+
+    res.status(200).json(calculationsOrbit2)
     
 
 

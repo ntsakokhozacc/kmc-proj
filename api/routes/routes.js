@@ -3,6 +3,6 @@ const controller = require('../controllers/controller')
 
 const router = Router();
 
-router.get('/test',controller.test);
+router.get('/kmc',controller.findBest);
 
 module.exports=router;
